@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="INFO">
+<!--<Configuration status="DEBUG">-->
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
     </Appenders>
     <Loggers>
+<!--        <Logger name="jdbc.audit">-->
+<!--            <level value="WARN"/>-->
+<!--        </Logger>-->
+<!--        <Logger name="jdbc.resultset">-->
+<!--            <level value="WARN"/>-->
+<!--        </Logger>-->
         <Logger name="sp1.sp1" level="INFO" additivity="false">
+<!--        <Logger name="sp1.sp1" level="DEBUG" additivity="false">-->
             <AppenderRef ref="Console"/>
         </Logger>
         <Root level="INFO">
+<!--        <Root level="DEBUG">-->
             <AppenderRef ref="Console"/>
         </Root>
     </Loggers>
