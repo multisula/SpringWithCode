@@ -24,14 +24,19 @@ public class BoardController {
 //    @Autowired
     private BoardService boardService;
 
+    // List //////////
     @GetMapping("/list")
-    public String list(Model model){
+    public void list(Model model){
         log.info("=====> Controller - list");
         List<BoardVO> list = boardService.getList();
         System.out.println(list);
         model.addAttribute("list", list);
+    }
 
-        return "board/list";
+    // Register //////////
+    @GetMapping("/register")
+    public void register() {
+
     }
 
     @PostMapping("/register")
@@ -44,6 +49,7 @@ public class BoardController {
         return "redirect:/board/list";
     }
 
+    // Get //////////
     @GetMapping("/get")
     public void get(
             @RequestParam("bno") Long bno,
@@ -53,6 +59,7 @@ public class BoardController {
         model.addAttribute("board", boardService.get(bno));
     }
 
+    // Modify //////////
     @PostMapping("/modify")
     public String modify(
             BoardVO boardVO,
@@ -66,6 +73,7 @@ public class BoardController {
         return "redirect:/board/list";
     }
 
+    // Remove //////////
     @PostMapping("/remove")
     public String remove(
             @RequestParam("bno") Long bno,
