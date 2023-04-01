@@ -6,7 +6,8 @@ import sp1.sp1.domain.BoardVO;
 import java.util.List;
 
 public interface BoardMapper {
-    @Select("SELECT * FROM tbl_board WHERE bno > 0")
+//    @Select("SELECT * FROM tbl_board WHERE bno > 0")
+    @Select("SELECT * FROM tbl_board")
     public List<BoardVO> getList();
 
     @Insert("INSERT INTO tbl_board(bno, title, content, writer) " +
