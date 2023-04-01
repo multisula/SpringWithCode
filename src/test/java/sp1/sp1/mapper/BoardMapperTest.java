@@ -1,7 +1,5 @@
-package sp1.sp1.persistence;
+package sp1.sp1.mapper;
 
-import demo.ex00.config.RootConfig;
-import demo.ex00.mapper.TimeMapper;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
@@ -9,18 +7,20 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import sp1.sp1.config.RootConfig;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = RootConfig.class)
 @Log4j2
+class BoardMapperTest {
 
-public class TimeMapperTests {
     @Setter(onMethod_ = @Autowired)
-    private TimeMapper timeMapper;
+    private BoardMapper mapper;
 
     @Test
-    public void testGetTime(){
-        log.info(timeMapper.getClass().getName());
-        log.info(timeMapper.getTiem());
+    public void testGetList(){
+        mapper.getList().forEach(board -> log.info(board));
     }
 }

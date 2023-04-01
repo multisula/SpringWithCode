@@ -22,7 +22,7 @@ public class JDBCTests {
     public void testConnection() {
         try(Connection con =
                     DriverManager.getConnection(
-                            "jdbc:oracle:thin:@192.168.0.7:15121/orclpdb",
+                            "jdbc:oracle:thin:@//192.168.0.7:15121/orclpdb",
                             "sula",
                             "1234")){
             log.info(con);

@@ -1,6 +1,5 @@
 package sp1.sp1.persistence.persistence;
 
-import demo.ex00.config.RootConfig;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 import org.apache.ibatis.session.SqlSession;
@@ -10,6 +9,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import sp1.sp1.config.RootConfig;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
