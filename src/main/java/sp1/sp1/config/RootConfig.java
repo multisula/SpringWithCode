@@ -6,12 +6,14 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan(basePackages = {"sp1.sp1.mapper", " sp1.sp1.mapper"})
+@ComponentScan(basePackages = {"sp1.sp1.service"})
+@MapperScan(basePackages = {"sp1.sp1.mapper"})
 public class RootConfig {
 
     @Bean

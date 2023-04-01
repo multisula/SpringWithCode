@@ -22,7 +22,6 @@
         </Logger>
         <Root level="INFO">
 <!--        <Root level="DEBUG">-->
-            <priority value="info"/>
             <AppenderRef ref="Console"/>
         </Root>
     </Loggers>
