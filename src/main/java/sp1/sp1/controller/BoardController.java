@@ -13,20 +13,23 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sp1.sp1.domain.BoardVO;
 import sp1.sp1.service.BoardService;
 
+import java.util.List;
+
 @Controller
 @Log4j2
 @RequestMapping("/board/*")
-//@AllArgsConstructor
+@AllArgsConstructor
 public class BoardController {
 
-    @Autowired
+//    @Autowired
     private BoardService boardService;
 
     @GetMapping("/list")
     public String list(Model model){
         log.info("=====> Controller - list");
-        boardService.getList().forEach(boardVO -> log.info(boardVO));
-        model.addAttribute("list", boardService.getList());
+        List<BoardVO> list = boardService.getList();
+        System.out.println(list);
+        model.addAttribute("list", list);
 
         return "board/list";
     }

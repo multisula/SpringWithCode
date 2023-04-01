@@ -1,6 +1,7 @@
 package sp1.sp1.domain;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -10,6 +11,6 @@ public class BoardVO {
     private String title;
     private String content;
     private String writer;
-    private Date redgate;
+    private Date regdate;
     private Date updateDate;
 }
