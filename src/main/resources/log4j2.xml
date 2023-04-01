@@ -13,12 +13,16 @@
 <!--        <Logger name="jdbc.resultset">-->
 <!--            <level value="WARN"/>-->
 <!--        </Logger>-->
+<!--        <Logger name="jdbc.connection">-->
+<!--            <level value="WARN"/>-->
+<!--        </Logger>-->
         <Logger name="sp1.sp1" level="INFO" additivity="false">
 <!--        <Logger name="sp1.sp1" level="DEBUG" additivity="false">-->
             <AppenderRef ref="Console"/>
         </Logger>
         <Root level="INFO">
 <!--        <Root level="DEBUG">-->
+            <priority value="info"/>
             <AppenderRef ref="Console"/>
         </Root>
     </Loggers>
