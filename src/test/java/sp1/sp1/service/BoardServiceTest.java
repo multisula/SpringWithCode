@@ -9,6 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import sp1.sp1.config.RootConfig;
 import sp1.sp1.domain.BoardVO;
+import sp1.sp1.domain.Criteria;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -62,5 +63,11 @@ class BoardServiceTest {
     @Test
     void testGetList() {
         boardService.getList().forEach(boardVO -> log.info(boardVO));
+    }
+
+    @Test
+    void testGetListWithPaging() {
+        boardService.getList(new Criteria(2, 10))
+                .forEach(boardVO -> log.info(boardVO));
     }
 }

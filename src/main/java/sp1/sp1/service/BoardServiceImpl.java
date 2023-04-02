@@ -6,6 +6,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sp1.sp1.domain.BoardVO;
+import sp1.sp1.domain.Criteria;
 import sp1.sp1.mapper.BoardMapper;
 
 import java.util.List;
@@ -46,5 +47,11 @@ public class BoardServiceImpl implements BoardService{
     public List<BoardVO> getList() {
         log.info("=====> Service - getList");
         return boardMapper.getList();
+    }
+
+    @Override
+    public List<BoardVO> getList(Criteria criteria) {
+        log.info("=====> Service - getList with criteria: " + criteria);
+        return boardMapper.getListWithPaging(criteria);
     }
 }

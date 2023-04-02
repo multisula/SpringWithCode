@@ -2,10 +2,23 @@ package sp1.sp1.mapper;
 
 import org.apache.ibatis.annotations.*;
 import sp1.sp1.domain.BoardVO;
+import sp1.sp1.domain.Criteria;
 
 import java.util.List;
 
 public interface BoardMapper {
+
+    // paging
+    @Select("SELECT bno, title, content, writer, regdate, updateDate " +
+            "FROM ( " +
+            "   SELECT /*+INDEX_DESC(tbl_board pk_board) */ " +
+            "       ROWNUM rn, bno, title, content, writer, regdate, updateDate " +
+            "   FROM tbl_board " +
+            "   WHERE ROWNUM <= #{pageNum} * #{amount} ) " +
+            "WHERE rn > (#{pageNum} - 1) * #{amount}")
+    public List<BoardVO> getListWithPaging(Criteria cri);
+
+    ////////////////////////////////////////////////
 
     @Select("SELECT * FROM tbl_board WHERE bno > 0")
     public List<BoardVO> getList();

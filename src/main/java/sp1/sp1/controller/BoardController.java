@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sp1.sp1.domain.BoardVO;
+import sp1.sp1.domain.Criteria;
+import sp1.sp1.domain.PageDTO;
 import sp1.sp1.service.BoardService;
 
 import java.util.List;
@@ -25,12 +27,20 @@ public class BoardController {
     private BoardService boardService;
 
     // List //////////
+//    @GetMapping("/list")
+//    public void list(Model model){
+//        log.info("=====> Controller - list");
+//        List<BoardVO> list = boardService.getList();
+//        System.out.println(list);
+//        model.addAttribute("list", list);
+//    }
+
     @GetMapping("/list")
-    public void list(Model model){
-        log.info("=====> Controller - list");
-        List<BoardVO> list = boardService.getList();
-        System.out.println(list);
-        model.addAttribute("list", list);
+    public void list(Criteria criteria, Model model){
+        log.info("=====> Controller - list: " + criteria);
+
+        model.addAttribute("list", boardService.getList(criteria));
+        model.addAttribute("pageMaker", new PageDTO(criteria, 123));
     }
 
     // Register //////////

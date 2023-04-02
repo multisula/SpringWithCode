@@ -9,6 +9,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import sp1.sp1.config.RootConfig;
 import sp1.sp1.domain.BoardVO;
+import sp1.sp1.domain.Criteria;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,6 +23,22 @@ class BoardMapperTest {
     @Setter(onMethod_ = @Autowired)
     private BoardMapper mapper;
 
+    // Paging
+    @Test
+    public void testGetListWithPaging(){
+        Criteria criteria = new Criteria();
+
+        criteria.setPageNum(3);
+        criteria.setAmount(10);
+
+        List<BoardVO> list = mapper.getListWithPaging(criteria);
+
+        list.forEach(boardVO -> log.info(boardVO.getBno()));
+    }
+
+
+
+    //////////////////////////////////////////
     @Test
     public void testGetList(){
         mapper.getList().forEach(board -> log.info(board));
