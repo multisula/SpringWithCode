@@ -26,8 +26,10 @@
             <!-- /.panel-heading -->
             <div class="panel-body">
                 <form role="form" action="/board/modify" method="post">
-                    <input type="hidden" name="pageNum" value="${pageMaker.criteria.pageNum}"/>
-                    <input type="hidden" name="amount" value="${pageMaker.criteria.amount}"/>
+                    <input type="hidden" name="pageNum" value="${criteria.pageNum}"/>
+                    <input type="hidden" name="amount" value="${criteria.amount}"/>
+                    <input type="hidden" name="type" value='<c:out value="${criteria.type}"/>'>
+                    <input type="hidden" name="keyword" value='<c:out value="${criteria.keyword}"/>'>
 
                     <div class="form-group">
                         <label>Bno</label>
@@ -83,10 +85,14 @@
                 formObj.attr("action", "/board/list").attr("method", "get");
                 var pageNumTag = $("input[name='pageNum']").clone();
                 var amountTag = $("input[name='amount']").clone();
+                var typeTag = $("input[name='type']").clone();
+                var keywordTag = $("input[name='keyword']").clone();
 
                 formObj.empty();
                 formObj.append(pageNumTag);
                 formObj.append(amountTag);
+                formObj.append(typeTag);
+                formObj.append(keywordTag);
             }
             formObj.submit();
         });

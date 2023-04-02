@@ -83,10 +83,12 @@ public class BoardController {
             rttr.addFlashAttribute("result", "success");
         }
 
-        rttr.addAttribute("pageNum", criteria.getPageNum());
-        rttr.addAttribute("amount", criteria.getAmount());
+//        rttr.addAttribute("pageNum", criteria.getPageNum());
+//        rttr.addAttribute("amount", criteria.getAmount());
+//        rttr.addAttribute("type", criteria.getType());
+//        rttr.addAttribute("keyword", criteria.getKeyword());
 
-        return "redirect:/board/list";
+        return "redirect:/board/list" + criteria.getListLink();
     }
 
     // Remove //////////
@@ -101,9 +103,11 @@ public class BoardController {
             rttr.addFlashAttribute("result", "success");
         }
 
-        rttr.addAttribute("pageNum", criteria.getPageNum());
-        rttr.addAttribute("amount", criteria.getAmount());
+//        rttr.addAttribute("pageNum", criteria.getPageNum());
+//        rttr.addAttribute("amount", criteria.getAmount());
+//        rttr.addAttribute("type", criteria.getType());
+//        rttr.addAttribute("keyword", criteria.getKeyword());
 
-        return "redirect:/board/list";
+        return "redirect:/board/list" + criteria.getListLink();
     }
 }

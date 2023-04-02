@@ -54,8 +54,12 @@
 
                 <form id="operForm" action="/board/modify" method="get">
                     <input type="hidden" id="bno" name="bno" value='<c:out value="${board.bno}"/>'>
-                    <input type="hidden" name="pageNum" value="${pageMaker.criteria.pageNum}"/>
-                    <input type="hidden" name="amount" value="${pageMaker.criteria.amount}"/>
+<%--                    <input type="hidden" name="pageNum" value="${pageMaker.criteria.pageNum}"/>--%>
+<%--                    <input type="hidden" name="amount" value="${pageMaker.criteria.amount}"/>--%>
+                    <input type="hidden" name="pageNum" value="${criteria.pageNum}"/>
+                    <input type="hidden" name="amount" value="${criteria.amount}"/>
+                    <input type="hidden" name="type" value='<c:out value="${criteria.type}"/>'>
+                    <input type="hidden" name="keyword" value='<c:out value="${criteria.keyword}"/>'>
                 </form>
             </div>
             <!-- end panel-boy -->
