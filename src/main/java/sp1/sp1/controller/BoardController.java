@@ -5,10 +5,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sp1.sp1.domain.BoardVO;
 import sp1.sp1.domain.Criteria;
@@ -36,11 +33,15 @@ public class BoardController {
 //    }
 
     @GetMapping("/list")
-    public void list(Criteria criteria, Model model){
+    public void list(
+            Criteria criteria,
+            Model model){
         log.info("=====> Controller - list: " + criteria);
 
+        int total = boardService.getTotal(criteria);
+
         model.addAttribute("list", boardService.getList(criteria));
-        model.addAttribute("pageMaker", new PageDTO(criteria, 123));
+        model.addAttribute("pageMaker", new PageDTO(criteria, total));
     }
 
     // Register //////////
@@ -63,6 +64,7 @@ public class BoardController {
     @GetMapping({"/get", "/modify"})
     public void get(
             @RequestParam("bno") Long bno,
+            @ModelAttribute("criteria") Criteria criteria,
             Model model){
         log.info("=====> Controller - get or modify");
 
@@ -73,12 +75,16 @@ public class BoardController {
     @PostMapping("/modify")
     public String modify(
             BoardVO boardVO,
+            @ModelAttribute("criteria") Criteria criteria,
             RedirectAttributes rttr){
         log.info("=====> Controller - modify: " + boardVO);
 
         if (boardService.modify(boardVO)) {
             rttr.addFlashAttribute("result", "success");
         }
+
+        rttr.addAttribute("pageNum", criteria.getPageNum());
+        rttr.addAttribute("amount", criteria.getAmount());
 
         return "redirect:/board/list";
     }
@@ -87,12 +93,16 @@ public class BoardController {
     @PostMapping("/remove")
     public String remove(
             @RequestParam("bno") Long bno,
+            @ModelAttribute("criteria") Criteria criteria,
             RedirectAttributes rttr) {
         log.info("=====> Controller - remove " + bno);
 
         if(boardService.remove(bno)){
             rttr.addFlashAttribute("result", "success");
         }
+
+        rttr.addAttribute("pageNum", criteria.getPageNum());
+        rttr.addAttribute("amount", criteria.getAmount());
 
         return "redirect:/board/list";
     }

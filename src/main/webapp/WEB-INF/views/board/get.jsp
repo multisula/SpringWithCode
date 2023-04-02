@@ -54,6 +54,8 @@
 
                 <form id="operForm" action="/board/modify" method="get">
                     <input type="hidden" id="bno" name="bno" value='<c:out value="${board.bno}"/>'>
+                    <input type="hidden" name="pageNum" value="${pageMaker.criteria.pageNum}"/>
+                    <input type="hidden" name="amount" value="${pageMaker.criteria.amount}"/>
                 </form>
             </div>
             <!-- end panel-boy -->

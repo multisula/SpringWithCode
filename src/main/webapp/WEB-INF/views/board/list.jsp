@@ -40,13 +40,36 @@
                     <c:forEach items="${list}" var="boardVO">
                         <tr>
                             <td><c:out value="${boardVO.bno}"/></td>
-                            <td><a href='/board/get?bno=<c:out value="${boardVO.bno}"/>'><c:out value="${boardVO.title}"/></a></td>
+                            <td>
+                                <a class='move' href='<c:out value="${boardVO.bno}"/>'>
+                                    <c:out value="${boardVO.title}"/></a>
+                            </td>
                             <td><c:out value="${boardVO.writer}"/></td>
                             <td><fmt:formatDate pattern="yyyy-MM-dd" value="${boardVO.regdate}"/></td>
                             <td><fmt:formatDate pattern="yyyy-MM-dd" value="${boardVO.updateDate}"/></td>
                         </tr>
                     </c:forEach>
                 </table>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <form id="searchForm" action="/board/list" method="get">
+                            <select name="type">
+                                <option value="">--</option>
+                                <option value="T">제목</option>
+                                <option value="C">내용</option>
+                                <option value="W">작성자</option>
+                                <option value="TC">제목 or 내용</option>
+                                <option value="TW">제목 or 작성자</option>
+                                <option value="TWC">제목 or 내용 or 작성자</option>
+                            </select>
+                            <input type="text" name="keyword"/>
+                            <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}"/>
+                            <input type="hidden" name="amount" value="${pageMaker.cri.amount}"/>
+                            <button class="btn btn-default">Search</button>
+                        </form>
+                    </div>
+                </div>
 
                 <div class="pull-right">
                     <ul class="pagination">
@@ -131,7 +154,14 @@
             console.log('click');
             actionForm.find("input[name='pageNum']").val($(this).attr("href"));
             actionForm.submit();
-        });``
+        });
+
+        $(".move").on("click", function(e) {
+            e.preventDefault();
+            actionForm.append("<input type='hidden' name='bno' value='" + $(this).attr("href")+"'>");
+            actionForm.attr("action", "/board/get");
+            actionForm.submit();
+        })
     });
 </script>
 <%@ include file="../includes/footer.jsp" %>
